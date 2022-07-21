@@ -144,8 +144,12 @@ width:100%;
 ::ng-deep .mat-expansion-panel-body {
     padding: 0 2px 14px!important;
 }
+::ng-deep .mat-expansion-panel-spacing{
+    background-color: rgb(200, 200, 200);
+}
 .musica-item{
     width:96%;
+    background-color: #fff;
     border:1px solid rgb(91,0,0);
     padding: 4px;
     margin-bottom: 2px;
@@ -157,7 +161,7 @@ width:100%;
         line-height: 28px;
     }
     &--trecho{
-        font-size: 12px;
+        font-size: 14px;
         line-height: 20px;
         text-align: center;
         font-style: italic;
