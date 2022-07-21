@@ -94,7 +94,32 @@ justify-content: center;
             margin-top:5px;
         }
     }
+    &--alfabeto{
+        margin:0 auto;
+        width:90%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+        row-gap: 5px;
+        column-gap: 8px;
+        &--title{
+            width:17%;
+            border:1px solid rgb(72, 72, 72);
+            background-color:rgb(240, 240, 240) ;
+            color:rgb(0, 0, 0);
+            font-size: 16px;
+            font-weight: bold;
+            padding:3px 0;
+            
+        }
+    }
 }
+}
+.active{
+    background: rgb(91,0,0);
+    color: #FFF;
 }
 .footer{
 width:100%;
