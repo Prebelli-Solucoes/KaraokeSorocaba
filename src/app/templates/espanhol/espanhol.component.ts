@@ -18,16 +18,37 @@ listaEspanhol:MusicasModel[]=[
     codigo:0
   }
 ]
+cantoresUnicos:string[]=[];
   constructor(private musicasService:MusicasService) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('listaEspanhol')!=null){
+      var ListaTemp= JSON.parse(JSON.stringify(localStorage.getItem('listaEspanhol')));
+      var listaEspanholLocalStorage=JSON.parse(ListaTemp);
+     this.listaEspanhol= listaEspanholLocalStorage;
+      this.listaCantoresUnicos();
+    }else{
     this.musicasService.getMusicas('ESP').subscribe(
       (musicas:MusicasModel[])=>{
         this.listaEspanhol=musicas;
-        console.log(musicas);
+        this.listaCantoresUnicos();
+        localStorage.setItem('listaEspanhol',JSON.stringify(this.listaEspanhol));
       }
       
     )
+    
+    }
   }
 
+  listaCantoresUnicos(){
+    // separa somente os cantores unicos
+    this.listaEspanhol.forEach(musica=>{
+      if(!this.cantoresUnicos.includes(musica.cantor)){
+        this.cantoresUnicos.push(musica.cantor);
+      }
+    })
+  }
+  musicaPorCantor(cantor:string){
+    return this.listaEspanhol.filter(musica=>musica.cantor==cantor);
+  }
 }

@@ -145,24 +145,24 @@ width:100%;
     padding: 0 2px 14px!important;
 }
 ::ng-deep .mat-expansion-panel-spacing{
-    background-color: rgb(200, 200, 200);
+    background-color: rgb(228, 228, 228);
 }
 .musica-item{
     width:96%;
     background-color: #fff;
     border:1px solid rgb(91,0,0);
     padding: 4px;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
     &--title{
         font-size: 14px;
         font-weight: bold;
         letter-spacing: 2px;
         text-align: center;
-        line-height: 28px;
+        line-height: 14px;
     }
     &--trecho{
         font-size: 14px;
-        line-height: 20px;
+        line-height: 14px;
         text-align: center;
         font-style: italic;
     }

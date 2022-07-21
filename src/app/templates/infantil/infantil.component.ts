@@ -32,12 +32,12 @@ export class InfantilComponent implements OnInit {
     this.musicasService.getMusicas('INF').subscribe(
       (musicas:MusicasModel[])=>{
         this.listaInfantil=musicas;
-        
+        this.listaCantoresUnicos();
         localStorage.setItem('listaInfantil',JSON.stringify(this.listaInfantil));
       }
       
     )
-    this.listaCantoresUnicos();
+    
     }
   }
  ngAfterViewInit(){
