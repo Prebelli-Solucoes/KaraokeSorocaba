@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://apikaraoke.herokuapp.com/musicas"
+  apiUrl: "https://apikaraoke-production.up.railway.app/Musicas/verCategoria?cat="
 };
 
 /*

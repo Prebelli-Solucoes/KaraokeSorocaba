@@ -1,4 +1,6 @@
+import { MusicasService } from './../../core/services/musicas.service';
 import { Component, OnInit } from '@angular/core';
+import { MusicasModel } from 'src/app/models/musicas-model';
 
 @Component({
   selector: 'app-infantil',
@@ -6,10 +8,49 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./infantil.component.scss']
 })
 export class InfantilComponent implements OnInit {
-
-  constructor() { }
+  listaInfantil:MusicasModel[]=[
+    {
+      id:1,
+      nome:'',
+      cantor:'',
+      categoria:'',
+      trecho:'',
+      codigo:0
+    }
+  ]
+  listaInfantilLocal:MusicasModel[]=[];
+  cantoresUnicos:string[]=[];
+  constructor(private musicasService:MusicasService) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('listaInfantil')!=null){
+      this.listaInfantilLocal=JSON.parse(JSON.stringify(localStorage.getItem('listaInfantil')));
+      this.listaInfantil=this.listaInfantilLocal;
+      this.listaCantoresUnicos();
+    }else{
+    this.musicasService.getMusicas('INF').subscribe(
+      (musicas:MusicasModel[])=>{
+        this.listaInfantil=musicas;
+        
+        localStorage.setItem('listaInfantil',JSON.stringify(this.listaInfantil));
+      }
+      
+    )
+    this.listaCantoresUnicos();
+    }
   }
-
+ ngAfterViewInit(){
+   
+  }
+  listaCantoresUnicos(){
+    // separa somente os cantores unicos
+    this.listaInfantil.forEach(musica=>{
+      if(!this.cantoresUnicos.includes(musica.cantor)){
+        this.cantoresUnicos.push(musica.cantor);
+      }
+    })
+  }
+  musicaPorCantor(cantor:string){
+    return this.listaInfantil.filter(musica=>musica.cantor==cantor);
+  }
 }

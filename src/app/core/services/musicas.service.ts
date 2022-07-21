@@ -11,7 +11,7 @@ export class MusicasService {
 
   constructor(private http:HttpClient) { }
 
-  getMusicas():Observable<MusicasModel[]>{
-    return this.http.get<MusicasModel[]>(environment.apiUrl);
+  getMusicas(categoria :string):Observable<MusicasModel[]>{
+    return this.http.get<MusicasModel[]>(environment.apiUrl+categoria);
   }
 }

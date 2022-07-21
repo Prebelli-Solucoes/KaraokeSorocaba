@@ -8,6 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './templates/home/home.component';
 
 import {MatIconModule} from '@angular/material/icon';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+
+
 import { ListaComponent } from './templates/lista/lista.component';
 import { NacionaisComponent } from './templates/nacionais/nacionais.component';
 import { InglesComponent } from './templates/ingles/ingles.component';
@@ -34,7 +38,8 @@ import { InfantilComponent } from './templates/infantil/infantil.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
