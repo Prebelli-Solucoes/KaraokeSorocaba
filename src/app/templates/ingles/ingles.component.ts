@@ -22,23 +22,14 @@ cantoresUnicos:string[]=[];
   constructor(private musicasService:MusicasService) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('listaIngles')!=null){
-      var ListaTemp= JSON.parse(JSON.stringify(localStorage.getItem('listaIngles')));
-      var listaInglesLocalStorage=JSON.parse(ListaTemp);
-     this.listaIngles= listaInglesLocalStorage;
-      this.listaCantoresUnicos();
-    }else{
     this.musicasService.getMusicas('ING').subscribe(
       (musicas:MusicasModel[])=>{
         this.listaIngles=musicas;
-        this.listaCantoresUnicos();
-        localStorage.setItem('listaIngles',JSON.stringify(this.listaIngles));
-       
+        this.listaCantoresUnicos();       
       }
       
     )
    
-    }
   }
 
   listaCantoresUnicos(){
