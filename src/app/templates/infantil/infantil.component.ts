@@ -18,14 +18,15 @@ export class InfantilComponent implements OnInit {
       codigo:0
     }
   ]
-  listaInfantilLocal:MusicasModel[]=[];
+  
   cantoresUnicos:string[]=[];
   constructor(private musicasService:MusicasService) { }
 
   ngOnInit(): void {
     if(localStorage.getItem('listaInfantil')!=null){
-      this.listaInfantilLocal=JSON.parse(JSON.stringify(localStorage.getItem('listaInfantil')));
-      this.listaInfantil=this.listaInfantilLocal;
+      var ListaTemp= JSON.parse(JSON.stringify(localStorage.getItem('listaInfantil')));
+      var listaInfantilLocalStorage=JSON.parse(ListaTemp);
+     this.listaInfantil= listaInfantilLocalStorage;
       this.listaCantoresUnicos();
     }else{
     this.musicasService.getMusicas('INF').subscribe(
