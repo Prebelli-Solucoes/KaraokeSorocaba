@@ -1,3 +1,4 @@
+import { MusicasService } from './../../core/services/musicas.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private musicasService: MusicasService) { }
 
   ngOnInit(): void {
+    this.musicasService.getMusicas().subscribe(
+      (musicas) => {
+        console.log(musicas);
+      })
   }
 
 }
