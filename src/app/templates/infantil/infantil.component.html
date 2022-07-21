@@ -8,7 +8,7 @@
     <div class="corpo">
         <div class="corpo--inner">
             <mat-accordion>
-                <mat-expansion-panel *ngFor="let cantor of cantoresUnicos">
+                <mat-expansion-panel *ngFor="let cantor of cantoresUnicos" >
                   <mat-expansion-panel-header >
                     <mat-panel-title>
                       {{cantor}}
@@ -16,7 +16,7 @@
                   </mat-expansion-panel-header>
                   <div class="musica-item" *ngFor="let musica of musicaPorCantor(cantor)">
                     <h6 class="musica-item--title">{{musica.codigo}} - {{musica.nome}}</h6>
-
+                    <p class="musica-item--trecho">"{{musica.trecho}}"</p>
                   </div>
                 </mat-expansion-panel>
             </mat-accordion>

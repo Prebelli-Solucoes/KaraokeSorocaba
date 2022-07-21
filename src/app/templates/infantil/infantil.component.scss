@@ -123,18 +123,43 @@ width:100%;
 
 ::ng-deep .mat-expansion-panel-header{
     height: auto;
+    
 }
 ::ng-deep .mat-accordion .mat-expansion-panel:not(.mat-expanded), .mat-accordion .mat-expansion-panel:not(.mat-expansion-panel-spacing){
     margin-bottom: 16px;
+    background-color: #fff;
 }
-::ng-deep .mat-expansion-panel-header.mat-expanded{
+::ng-deep .mat-expansion-panel-header.mat-expanded, ::ng-deep .mat-expansion-panel-header.mat-expanded:hover{
     height: auto;
     border-bottom: 1px solid rgb(91,0,0);
     margin-bottom: 12px;
 }
+
 ::ng-deep .mat-expansion-panel-header-title{
     font-size: 14px;
     font-weight: bold;
     letter-spacing: 2px;
     line-height: 28px;
+}
+::ng-deep .mat-expansion-panel-body {
+    padding: 0 2px 14px!important;
+}
+.musica-item{
+    width:96%;
+    border:1px solid rgb(91,0,0);
+    padding: 4px;
+    margin-bottom: 2px;
+    &--title{
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-align: center;
+        line-height: 28px;
+    }
+    &--trecho{
+        font-size: 12px;
+        line-height: 20px;
+        text-align: center;
+        font-style: italic;
+    }
 }
