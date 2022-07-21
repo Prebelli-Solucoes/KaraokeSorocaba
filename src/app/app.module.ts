@@ -7,12 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './templates/home/home.component';
 
 import {MatIconModule} from '@angular/material/icon';
+import { ListaComponent } from './templates/lista/lista.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ListaComponent
   ],
   imports: [
     BrowserModule,
