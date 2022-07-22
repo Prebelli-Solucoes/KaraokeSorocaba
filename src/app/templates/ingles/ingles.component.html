@@ -1,9 +1,19 @@
+<div class="hidden" [class.loading]="busy">
+  <img src="../../../assets/images/loading.gif" alt="">
+  <h3 class="loading--text">Carregando Lista...</h3>
+</div>
+<button class="toUp mat-elevation-z5" (click)="toTop()">
+  <i class="fa-solid fa-arrow-up"></i>  
+</button>
 <div class="total">
     <div class="header">
         <h5 class="header--title">
-            Áurea Barbosa Karaoke
+            Inglês
         </h5>
-            <a routerLink="" class="link"><button class="header--button"><i class="fa-solid fa-home"></i>Home</button></a>
+        <div class="header--buttons">
+          <a routerLink="" class="link"><button class="header--button"><i class="fa-solid fa-home"></i>Home</button></a>
+          <a [routerLink]="['/lista']" class="link"><button class="header--button"><i class="fa-solid fa-undo"></i>Categorias</button></a>
+      </div>
     </div>
     <div class="corpo">
         <div class="corpo--inner">

@@ -10,7 +10,7 @@ import { HomeComponent } from './templates/home/home.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
 
-
+import { NgxScrollTopModule } from 'ngx-scrolltop';
 
 import { ListaComponent } from './templates/lista/lista.component';
 import { NacionaisComponent } from './templates/nacionais/nacionais.component';
@@ -39,7 +39,8 @@ import { InfantilComponent } from './templates/infantil/infantil.component';
     BrowserAnimationsModule,
     MatIconModule,
     HttpClientModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgxScrollTopModule
   ],
   providers: [],
   bootstrap: [AppComponent]

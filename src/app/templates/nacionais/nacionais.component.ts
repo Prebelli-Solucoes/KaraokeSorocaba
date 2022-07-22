@@ -1,6 +1,7 @@
 import { MusicasService } from './../../core/services/musicas.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MusicasModel } from 'src/app/models/musicas-model';
+import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-nacionais',
@@ -8,6 +9,7 @@ import { MusicasModel } from 'src/app/models/musicas-model';
   styleUrls: ['./nacionais.component.scss']
 })
 export class NacionaisComponent implements OnInit {
+  @ViewChild(MatAccordion) accordion!: MatAccordion;
   busy=false;
   listaNacionais:MusicasModel[]=[
     {
@@ -133,57 +135,68 @@ export class NacionaisComponent implements OnInit {
 
   ngOnInit(): void {
     this.busy=true;
-    if(localStorage.getItem('listaNacionais')!=null){
-      var ListaTemp= JSON.parse(JSON.stringify(localStorage.getItem('listaNacionais')));
-      var listaNacionaisLocalStorage=JSON.parse(ListaTemp);
-     this.listaNacionais= listaNacionaisLocalStorage;
-     this.listaPorLetra('A'); 
-    }else{
-    this.musicasService.getMusicas('BRA').subscribe(
-      (musicas:MusicasModel[])=>{
-        this.listaNacionais=musicas;
-        localStorage.setItem('listaNacionais',JSON.stringify(this.listaNacionais));
-        this.listaPorLetra('A');      
-      }
-      
-    )
-    }
+    this.listaPorLetra("A");
   }
-  listaPorLetra(letraEscolhida:string){
+  async listaPorLetra(letraEscolhida:string){
     this.busy=true;
-    
-    if(letraEscolhida=='#'){
-     //filtrar this.listaNacionais quando primeiro caracter de cantor for numero ou caracter especial 
-     const caracteres = /[A-Za-z]/;
-     this.listaFiltraLetra=this.listaNacionais.filter(musica=>!caracteres.test(musica.cantor.charAt(0)));
-     this.alfabeto.forEach(letra=>{
-      letra.active=false;
-    });
-     this.alfabeto[this.alfabeto.findIndex(letra=>letra.letra==letraEscolhida)].active=true;
-    }else{
 
  this.alfabeto.forEach(letra=>{
     letra.active=false;
   });
- 
   this.alfabeto[this.alfabeto.findIndex(letra=>letra.letra==letraEscolhida)].active=true;
-  
-    this.listaFiltraLetra = this.listaNacionais.filter(musica=>musica.cantor.startsWith(letraEscolhida));
-}
-    this.listaCantoresUnicos(); 
-    return this.listaFiltraLetra;
+  if(letraEscolhida=='#'){
+    letraEscolhida='0';
+   }
+  if(localStorage.getItem(`listaBra${letraEscolhida}`)!=null){
+    var ListaTemp= JSON.parse(JSON.stringify(localStorage.getItem(`listaBra${letraEscolhida}`)));
+    var listaBraLocalStorage=JSON.parse(ListaTemp);
+    this.listaFiltraLetra=[];
+   this.listaFiltraLetra= listaBraLocalStorage;
+  await  this.listaCantoresUnicos();
+  }else{
+  this.musicasService.getMusicas('BRA',letraEscolhida).subscribe(
+    (musicas:MusicasModel[])=>{
+      this.listaFiltraLetra=[];
+      this.listaFiltraLetra=musicas;
+      localStorage.setItem(`listaBra${letraEscolhida}`,JSON.stringify(this.listaFiltraLetra));  
+      this.listaCantoresUnicos();
+    }
+    
+  )
   }
-  listaCantoresUnicos(){
+  }
+  async listaCantoresUnicos(){
     // separa somente os cantores unicos
     this.cantoresUnicos=[];
-    this.listaFiltraLetra.forEach(musica=>{
+    //ordena listaFiltraLetra por cantor
+    this.listaFiltraLetra.sort((a,b)=>{
+      if(a.cantor<b.cantor){
+        return -1;
+      }
+      if(a.cantor>b.cantor){
+        return 1;
+      }
+      return 0;
+    }
+    );
+   await this.listaFiltraLetra.forEach(musica=>{
       if(!this.cantoresUnicos.includes(musica.cantor)){
         this.cantoresUnicos.push(musica.cantor);
+        
       }
     })
+
     this.busy=false;
   }
   musicaPorCantor(cantor:string){
-    return this.listaNacionais.filter(musica=>musica.cantor==cantor);
+    return this.listaFiltraLetra.filter(musica=>musica.cantor==cantor);
+  }
+  toTop(){
+    this.accordion.closeAll()
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 }

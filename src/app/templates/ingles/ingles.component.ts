@@ -1,6 +1,7 @@
 import { MusicasService } from './../../core/services/musicas.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MusicasModel } from 'src/app/models/musicas-model';
+import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-ingles',
@@ -8,6 +9,8 @@ import { MusicasModel } from 'src/app/models/musicas-model';
   styleUrls: ['./ingles.component.scss']
 })
 export class InglesComponent implements OnInit {
+  @ViewChild(MatAccordion) accordion!: MatAccordion;
+  busy=true;
 listaIngles:MusicasModel[]=[
   {
     id:1,
@@ -133,54 +136,69 @@ cantoresUnicos:string[]=[];
   constructor(private musicasService:MusicasService) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('listaIngles')!=null){
-      var ListaTemp= JSON.parse(JSON.stringify(localStorage.getItem('listaIngles')));
-      var listaInglesLocalStorage=JSON.parse(ListaTemp);
-     this.listaIngles= listaInglesLocalStorage;
-     this.listaPorLetra('A'); 
-    }else{
-    this.musicasService.getMusicas('ING').subscribe(
-      (musicas:MusicasModel[])=>{
-        this.listaIngles=musicas;
-        localStorage.setItem('listaIngles',JSON.stringify(this.listaIngles));
-        this.listaPorLetra('A');      
-      }
-      
-    )
-    }
+    this.busy=true;
+    this.listaPorLetra("A");
   }
-  listaPorLetra(letraEscolhida:string){
-    if(letraEscolhida=='#'){
-     //filtrar this.listaIngles quando primeiro caracter de cantor for numero ou caracter especial 
-     const caracteres = /[A-Za-z]/;
-     this.listaFiltraLetra=this.listaIngles.filter(musica=>!caracteres.test(musica.cantor.charAt(0)));
-     this.alfabeto.forEach(letra=>{
-      letra.active=false;
-    });
-     this.alfabeto[this.alfabeto.findIndex(letra=>letra.letra==letraEscolhida)].active=true;
-    }else{
+  async listaPorLetra(letraEscolhida:string){
+    this.busy=true;
 
  this.alfabeto.forEach(letra=>{
     letra.active=false;
   });
- 
   this.alfabeto[this.alfabeto.findIndex(letra=>letra.letra==letraEscolhida)].active=true;
-  
-    this.listaFiltraLetra = this.listaIngles.filter(musica=>musica.cantor.startsWith(letraEscolhida));
-}
-    this.listaCantoresUnicos(); 
-    return this.listaFiltraLetra;
+  if(letraEscolhida=='#'){
+    letraEscolhida='0';
+   }
+  if(localStorage.getItem(`listaIngles${letraEscolhida}`)!=null){
+    var ListaTemp= JSON.parse(JSON.stringify(localStorage.getItem(`listaIngles${letraEscolhida}`)));
+    var listaInglesLocalStorage=JSON.parse(ListaTemp);
+    this.listaFiltraLetra=[];
+   this.listaFiltraLetra= listaInglesLocalStorage;
+  await  this.listaCantoresUnicos();
+  }else{
+  this.musicasService.getMusicas('ING',letraEscolhida).subscribe(
+    (musicas:MusicasModel[])=>{
+      this.listaFiltraLetra=[];
+      this.listaFiltraLetra=musicas;
+      localStorage.setItem(`listaIngles${letraEscolhida}`,JSON.stringify(this.listaFiltraLetra));  
+      this.listaCantoresUnicos();
+    }
+    
+  )
   }
-  listaCantoresUnicos(){
+  }
+  async listaCantoresUnicos(){
     // separa somente os cantores unicos
     this.cantoresUnicos=[];
-    this.listaFiltraLetra.forEach(musica=>{
+      //ordena listaFiltraLetra por cantor
+      this.listaFiltraLetra.sort((a,b)=>{
+        if(a.cantor<b.cantor){
+          return -1;
+        }
+        if(a.cantor>b.cantor){
+          return 1;
+        }
+        return 0;
+      }
+      );
+   await this.listaFiltraLetra.forEach(musica=>{
       if(!this.cantoresUnicos.includes(musica.cantor)){
         this.cantoresUnicos.push(musica.cantor);
+        
       }
     })
+
+    this.busy=false;
   }
   musicaPorCantor(cantor:string){
-    return this.listaIngles.filter(musica=>musica.cantor==cantor);
+    return this.listaFiltraLetra.filter(musica=>musica.cantor==cantor);
+  }
+  toTop(){
+    this.accordion.closeAll()
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 }

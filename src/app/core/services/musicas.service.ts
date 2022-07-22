@@ -11,7 +11,11 @@ export class MusicasService {
 
   constructor(private http:HttpClient) { }
 
-  getMusicas(categoria :string):Observable<MusicasModel[]>{
+  getMusicas(categoria :string,letra?:string):Observable<MusicasModel[]>{
+    if(letra){
+      return this.http.get<MusicasModel[]>(`${environment.apiUrl}${categoria}&letra=${letra}`);
+    }else{
     return this.http.get<MusicasModel[]>(environment.apiUrl+categoria);
+    }
   }
 }

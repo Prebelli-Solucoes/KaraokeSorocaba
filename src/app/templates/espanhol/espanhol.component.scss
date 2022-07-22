@@ -5,6 +5,7 @@
     justify-content: center;
     cursor: pointer;
     text-decoration: none;
+    align-items: flex-start;
 }
 .total{
 width: 100%;
@@ -40,6 +41,11 @@ text-align: center;
     line-height: 28px;
     font-size: 28px;
     margin-top:20px;
+}
+&--buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
 }
 &--button{
 background-color: transparent;
@@ -123,11 +129,15 @@ width:100%;
 
 ::ng-deep .mat-expansion-panel-header{
     height: auto;
-    
+   
+}
+::ng-deep .mat-accordion{
+    width:100%;
 }
 ::ng-deep .mat-accordion .mat-expansion-panel:not(.mat-expanded), .mat-accordion .mat-expansion-panel:not(.mat-expansion-panel-spacing){
     margin-bottom: 16px;
     background-color: #fff;
+    min-width: 100%;
 }
 ::ng-deep .mat-expansion-panel-header.mat-expanded, ::ng-deep .mat-expansion-panel-header.mat-expanded:hover{
     height: auto;
@@ -166,4 +176,50 @@ width:100%;
         text-align: center;
         font-style: italic;
     }
+}
+
+.hidden{
+    display:none;
+}
+.loading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(15, 15, 15, 0.564);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    &--text{
+        color: #FFF;
+        font-size: 20px;
+        margin-top: 20px;
+    }
+}
+.toUp{
+    border: none;
+    outline: none;
+    width: 40px;
+    height: 40px;
+    background: rgb(91,0,0);
+    color: #FFF;
+    position: fixed;
+    bottom: 35px;
+    right: 15px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0.9;
+    scroll-behavior: smooth;
+}
+.fa-arrow-up{
+    font-size: 20px;
+    color: #fff;
+    z-index: 999;
 }
