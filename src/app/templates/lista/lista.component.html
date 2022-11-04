@@ -7,6 +7,15 @@
     </div>
     <div class="corpo">
         <div class="corpo--inner">
+            <div class="busca">
+                    <mat-form-field class="busca--form" appearance="fill">
+                      <mat-label>Procurar Música</mat-label>
+                      <input matInput placeholder="Procurar" [(ngModel)]="termo" (keyup)="validaBotao()">
+                      <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                    <button class="busca--button" (click)="buscar()" [disabled]="desabilitado">Buscar</button>
+            </div>
+
             <h4 class="corpo--inner--title">Categorias</h4>
 
             <a class="corpo--inner--item" [routerLink]="['/nacionais']">

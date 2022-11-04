@@ -1,6 +1,7 @@
 import { MusicasModel } from './../../models/musicas-model';
 import { MusicasService } from './../../core/services/musicas.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista',
@@ -10,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
 export class ListaComponent implements OnInit {
 dataStorage:Date = new Date();
 dataAtual:Date = new Date();
-  constructor(private musicasService: MusicasService) { }
+termo:string='';
+desabilitado=true;
+  constructor(private musicasService: MusicasService,private route:Router) { }
 
   ngOnInit(): void {
    if(localStorage.getItem('dataStorage')!=null){
@@ -24,5 +27,14 @@ dataAtual:Date = new Date();
       localStorage.setItem('dataStorage',JSON.stringify(this.dataAtual));
    }
 }
-
+validaBotao(){
+  if(this.termo.length>3){
+    this.desabilitado=false;
+  }else{
+    this.desabilitado=true;
+  }
+}
+  buscar(){
+    this.route.navigate(['/busca/'+this.termo]);
+  }
 }

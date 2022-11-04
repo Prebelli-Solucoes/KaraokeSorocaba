@@ -1,0 +1,40 @@
+<div class="hidden" [class.loading]="busy">
+    <img src="../../../assets/images/loading.gif" alt="">
+    <h3 class="loading--text">Carregando Lista...</h3>
+  </div>
+  <button class="toUp mat-elevation-z5" (click)="toTop()">
+    <i class="fa-solid fa-arrow-up"></i>  
+  </button>
+  <div class="total">
+      <div class="header">
+          <h5 class="header--title">
+                Busca por {{termo}}
+          </h5>
+          <div class="header--buttons">
+            <a routerLink="" class="link"><button class="header--button"><i class="fa-solid fa-home"></i>Home</button></a>
+            <a [routerLink]="['/lista']" class="link"><button class="header--button"><i class="fa-solid fa-undo"></i>Categorias</button></a>
+        </div>
+      </div>
+      <div class="corpo">
+          <div class="corpo--inner">
+              <mat-accordion multi>
+                  <mat-expansion-panel *ngFor="let cantor of cantoresUnicos" >
+                    <mat-expansion-panel-header >
+                      <mat-panel-title>
+                        {{cantor}}
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="musica-item" *ngFor="let musica of musicaPorCantor(cantor)">
+                      <h6 class="musica-item--title">{{musica.codigo}} - {{musica.nome}}</h6>
+                      <p class="musica-item--trecho">"{{musica.trecho}}"</p>
+                    </div>
+                  </mat-expansion-panel>
+              </mat-accordion>
+          </div>
+      </div>
+  
+  
+      <div class="footer">
+          <p class="footer--text">Desenvolvido por <a href="https://api.whatsapp.com/send?phone=5515991789945" class="footer--link">Clayton Prebelli</a></p>
+      </div>
+  </div>

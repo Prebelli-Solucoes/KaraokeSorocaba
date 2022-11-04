@@ -119,3 +119,31 @@ box-shadow: 2px 0px 10px rgba(0,0,0,0.5);
             text-decoration: underline;
         }
     }
+    .busca{
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &--form{
+            width:100%;
+            
+        }
+        &--button{
+            width: 100%;
+            background: rgb(91,0,0);
+    background: linear-gradient(0deg, rgba(91,0,0) 2%, rgba(197,50,50) 54%, rgba(157, 11, 11) 100%);
+align-items: center;
+color:#fff;
+height: 38px;
+font-weight: bold;
+font-size: 18px;
+box-shadow: 2px 0px 10px rgba(0,0,0,0.5);
+&:disabled{
+    background: rgb(218, 218, 218);
+    border:none;
+    box-shadow: none;
+    color:rgb(165, 165, 165);
+
+}
+        }
+    }

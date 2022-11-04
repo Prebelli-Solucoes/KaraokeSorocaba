@@ -8,6 +8,7 @@ import { ListaComponent } from './templates/lista/lista.component';
 import { HomeComponent } from './templates/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BuscaComponent } from './templates/busca/busca.component';
 
 const routes: Routes = [{
   path: '',
@@ -40,11 +41,15 @@ component:InfantilComponent
 {
   path: 'espanhol',
   component: EspanholComponent
+},
+{
+  path: 'busca/:termo',
+  component:BuscaComponent
 }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+exports: [RouterModule]
 })
 export class AppRoutingModule { }

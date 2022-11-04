@@ -9,6 +9,7 @@ import { HomeComponent } from './templates/home/home.component';
 
 import {MatIconModule} from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatInputModule} from '@angular/material/input';
 
 import { NgxScrollTopModule } from 'ngx-scrolltop';
 
@@ -19,6 +20,8 @@ import { ItalianoComponent } from './templates/italiano/italiano.component';
 import { EspanholComponent } from './templates/espanhol/espanhol.component';
 import { GospelComponent } from './templates/gospel/gospel.component';
 import { InfantilComponent } from './templates/infantil/infantil.component';
+import { BuscaComponent } from './templates/busca/busca.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -31,7 +34,8 @@ import { InfantilComponent } from './templates/infantil/infantil.component';
     ItalianoComponent,
     EspanholComponent,
     GospelComponent,
-    InfantilComponent
+    InfantilComponent,
+    BuscaComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,9 @@ import { InfantilComponent } from './templates/infantil/infantil.component';
     MatIconModule,
     HttpClientModule,
     MatExpansionModule,
-    NgxScrollTopModule
+    NgxScrollTopModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
