@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://apikaraoke.somee.com/Musicas/"
+  apiUrl: "https://apikaraoke.somee.com/Musicas/" 
 };
 
 /*
