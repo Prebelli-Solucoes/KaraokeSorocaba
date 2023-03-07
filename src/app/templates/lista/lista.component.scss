@@ -24,8 +24,8 @@
     top:0;
     left:0;
     align-items: center;
-    background: rgb(91,0,0);
-    background: linear-gradient(0deg, rgba(91,0,0) 2%, rgba(197,50,50) 54%, rgba(157, 11, 11) 100%);
+    background: rgb(39, 0, 91);
+    background: linear-gradient(0deg, rgb(39, 0, 91) 2%, rgb(37, 9, 75) 54%,rgb(65, 3, 146));
 align-items: center;
 border-bottom: 2px solid #fff;
 box-shadow: 2px 0px 10px rgba(0,0,0,0.5);
@@ -101,7 +101,8 @@ box-shadow: 2px 0px 10px rgba(0,0,0,0.5);
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgb(91,0,0);
+        background: rgb(39, 0, 91);
+    
         &--text{
             color:#FFF;
             letter-spacing: 2px;
@@ -130,14 +131,15 @@ box-shadow: 2px 0px 10px rgba(0,0,0,0.5);
         }
         &--button{
             width: 100%;
-            background: rgb(91,0,0);
-    background: linear-gradient(0deg, rgba(91,0,0) 2%, rgba(197,50,50) 54%, rgba(157, 11, 11) 100%);
+            background: rgb(39, 0, 91);
+    background: linear-gradient(0deg, rgb(39, 0, 91) 2%, rgb(37, 9, 75) 54%,rgb(65, 3, 146));
 align-items: center;
 color:#fff;
 height: 38px;
 font-weight: bold;
 font-size: 18px;
 box-shadow: 2px 0px 10px rgba(0,0,0,0.5);
+border:none;
 &:disabled{
     background: rgb(218, 218, 218);
     border:none;

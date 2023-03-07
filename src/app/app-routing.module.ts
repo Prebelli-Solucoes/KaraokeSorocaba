@@ -12,7 +12,7 @@ import { BuscaComponent } from './templates/busca/busca.component';
 
 const routes: Routes = [{
   path: '',
-  component: HomeComponent,
+  component: ListaComponent,
 },
 {
   path: 'lista',
