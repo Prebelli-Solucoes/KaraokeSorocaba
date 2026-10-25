@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Karaoke';
+  logoDon = 'assets/images/don.png?v=' + Date.now();
 }
