@@ -1,10 +1,11 @@
 import { MusicasService } from './../../core/services/musicas.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MusicasModel } from 'src/app/models/musicas-model';
+import { MusicasModel } from '../../models/musicas-model';
 import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-nacionais',
+  standalone: false,
   templateUrl: './nacionais.component.html',
   styleUrls: ['./nacionais.component.scss']
 })

@@ -1,40 +1,59 @@
-<div class="hidden" [class.loading]="busy">
-  <img src="../../../assets/images/Logo.png" alt="" class="logo-loading">
-  <h3 class="loading--text">Carregando Lista...</h3>
-</div>
-<button class="toUp mat-elevation-z5" (click)="toTop()">
-  <i class="fa-solid fa-arrow-up"></i>  
-</button>
-<div class="total">
-    <div class="header">
-        <h5 class="header--title">
-              Infantil
-        </h5>
-        <div class="header--buttons">
-          <a routerLink="" class="link"><button class="header--button"><i class="fa-solid fa-home"></i>Home</button></a>
-          <a [routerLink]="['/lista']" class="link"><button class="header--button"><i class="fa-solid fa-undo"></i>Categorias</button></a>
+<div class="page">
+  @if (busy) {
+    <div class="loader" role="status" aria-live="polite">
+      <div class="loader__card">
+        <img src="assets/images/don.png" alt="" class="loader__logo">
+        <span class="loader__text">Carregando músicas...</span>
       </div>
     </div>
-    <div class="corpo">
-        <div class="corpo--inner">
-            <mat-accordion multi>
-                <mat-expansion-panel *ngFor="let cantor of cantoresUnicos" >
-                  <mat-expansion-panel-header >
-                    <mat-panel-title>
-                      {{cantor}}
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <div class="musica-item" *ngFor="let musica of musicaPorCantor(cantor)">
-                    <h6 class="musica-item--title">{{musica.codigo}} - {{musica.nome}}</h6>
-                    <p class="musica-item--trecho">"{{musica.trecho}}"</p>
-                  </div>
-                </mat-expansion-panel>
-            </mat-accordion>
-        </div>
-    </div>
+  }
 
-
-    <div class="footer">
-        <p class="footer--text">Desenvolvido por <a href="https://api.whatsapp.com/send?phone=5515991789945" class="footer--link">Clayton Prebelli</a></p>
+  <header class="page-header">
+    <a class="page-header__icon" routerLink="/lista" aria-label="Voltar para categorias"><i class="fa-solid fa-arrow-left"></i></a>
+    <div class="page-header__titles">
+      <img src="assets/images/don.png" alt="Don Petisco" class="page-header__logo">
+      <div class="page-header__text">
+        <span class="page-header__eyebrow">Karaoke Sorocaba</span>
+        <h1 class="page-header__title">Infantil</h1>
+      </div>
     </div>
+    <a class="page-header__icon" routerLink="/" aria-label="Início"><i class="fa-solid fa-house"></i></a>
+  </header>
+
+  <main class="page-main">
+    <section class="catalog" aria-label="Músicas por cantor">
+      <mat-accordion multi>
+        @for (cantor of cantoresUnicos; track cantor) {
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>{{ cantor }}</mat-panel-title>
+              <mat-panel-description>{{ musicaPorCantor(cantor).length }} faixa(s)</mat-panel-description>
+            </mat-expansion-panel-header>
+            @for (musica of musicaPorCantor(cantor); track musica.id) {
+              <div class="song">
+                <span class="song__code">{{ musica.codigo }}</span>
+                <div class="song__body">
+                  <h3 class="song__title">{{ musica.nome }}</h3>
+                  @if (musica.trecho) {
+                    <p class="song__snippet">{{ musica.trecho }}</p>
+                  }
+                </div>
+              </div>
+            }
+          </mat-expansion-panel>
+        } @empty {
+          <div class="empty">
+            <i class="fa-solid fa-music"></i>
+            <p>Nenhuma música encontrada.</p>
+          </div>
+        }
+      </mat-accordion>
+    </section>
+  </main>
+
+  <button type="button" class="fab-top" (click)="toTop()" aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <footer class="app-footer">
+    Desenvolvido por <a href="https://wa.me/5515981746903?text=vi%20seu%20sistema%20de%20karaoke" target="_blank" rel="noopener">Clayton Prebelli</a>
+  </footer>
 </div>

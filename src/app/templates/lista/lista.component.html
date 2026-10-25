@@ -1,52 +1,71 @@
-<div class="total">
-    <div class="header">
-        <h5 class="header--title">
-            Karaoke Sorocaba
-        </h5>
-            <a routerLink="" class="link"><button class="header--button"><i class="fa-solid fa-home"></i>Home</button></a>
+<div class="page">
+  <section class="hero">
+    <div class="hero__top">
+      <img src="assets/images/don.png" alt="Don Petisco" class="hero__logo">
+      <div>
+        <h1 class="hero__title">Karaoke Sorocaba</h1>
+      </div>
     </div>
-    <div class="corpo">
-        <div class="corpo--inner">
-            <div class="busca">
-                    <mat-form-field class="busca--form" appearance="fill">
-                      <mat-label>Procurar Música</mat-label>
-                      <input matInput placeholder="Procurar" [(ngModel)]="termo" (keyup)="validaBotao()">
-                      <mat-icon matSuffix>search</mat-icon>
-                    </mat-form-field>
-                    <button class="busca--button" (click)="buscar()" [disabled]="desabilitado">Buscar</button>
-            </div>
+    <p class="hero__subtitle">Encontre a música certa para a sua vez no microfone.</p>
 
-            <h4 class="corpo--inner--title">Categorias</h4>
+    <form class="search" (ngSubmit)="buscar()">
+      <div class="search__field">
+        <i class="fa-solid fa-magnifying-glass search__icon"></i>
+        <input
+          class="search__input"
+          type="search"
+          name="termo"
+          [(ngModel)]="termo"
+          placeholder="Música ou cantor..."
+          aria-label="Procurar música"
+          autocomplete="off"
+        >
+      </div>
+      <button class="search__button" type="submit" [disabled]="termo.trim().length < 4">Buscar</button>
+    </form>
+  </section>
 
-            <a class="corpo--inner--item" [routerLink]="['/nacionais']">
-                <img src="../../../assets/images/nacional.png" alt="Nacionais" class="corpo--inner--item--flag">
-                <h5 class="corpo--inner--item--title">Nacionais</h5>
-            </a>
-            <a class="corpo--inner--item" [routerLink]="['/ingles']">
-                <img src="../../../assets/images/ingles.png" alt="Ingles" class="corpo--inner--item--flag">
-                <h5 class="corpo--inner--item--title">Inglês</h5>
-            </a>
-            <a class="corpo--inner--item" [routerLink]="['/italiano']">
-                <img src="../../../assets/images/italiano.png" alt="Italiano" class="corpo--inner--item--flag">
-                <h5 class="corpo--inner--item--title">Italiano</h5>
-            </a>
-            <a class="corpo--inner--item" [routerLink]="['/espanhol']">
-                <img src="../../../assets/images/espanhol.png" alt="Espanhol" class="corpo--inner--item--flag">
-                <h5 class="corpo--inner--item--title">Espanhol</h5>
-            </a>
-            <a class="corpo--inner--item" [routerLink]="['/gospel']">
-                <img src="../../../assets/images/gospel.png" alt="Gospel" class="corpo--inner--item--flag">
-                <h5 class="corpo--inner--item--title">Gospel</h5>
-            </a>
-            <a class="corpo--inner--item" [routerLink]="['/infantil']">
-                <img src="../../../assets/images/infantil.png" alt="Infantil" class="corpo--inner--item--flag">
-                <h5 class="corpo--inner--item--title">Infantil</h5>
-            </a>
-        </div>
+  <main class="page-main">
+    <div class="section-title">
+      <h2>Categorias</h2>
+      <span class="section-title__hint">Escolha um estilo</span>
     </div>
 
+    <nav class="categories" aria-label="Categorias de música">
+      <a class="category-card" routerLink="/nacionais">
+        <img src="assets/images/nacional.png" alt="" class="category-card__flag">
+        <span class="category-card__name">Nacionais</span>
+        <span class="category-card__hint">MPB, sertanejo e mais</span>
+      </a>
+      <a class="category-card" routerLink="/ingles">
+        <img src="assets/images/ingles.png" alt="" class="category-card__flag">
+        <span class="category-card__name">Inglês</span>
+        <span class="category-card__hint">Pop, rock e clássicos</span>
+      </a>
+      <a class="category-card" routerLink="/italiano">
+        <img src="assets/images/italiano.png" alt="" class="category-card__flag">
+        <span class="category-card__name">Italiano</span>
+        <span class="category-card__hint">Canções italianas</span>
+      </a>
+      <a class="category-card" routerLink="/espanhol">
+        <img src="assets/images/espanhol.png" alt="" class="category-card__flag">
+        <span class="category-card__name">Espanhol</span>
+        <span class="category-card__hint">Latinas e românticas</span>
+      </a>
+      <a class="category-card" routerLink="/gospel">
+        <img src="assets/images/gospel.png" alt="" class="category-card__flag">
+        <span class="category-card__name">Gospel</span>
+        <span class="category-card__hint">Louvor e adoração</span>
+      </a>
+      <a class="category-card" routerLink="/infantil">
+        <img src="assets/images/infantil.png" alt="" class="category-card__flag">
+        <span class="category-card__name">Infantil</span>
+        <span class="category-card__hint">Para a criançada</span>
+      </a>
+    </nav>
+  </main>
 
-    <div class="footer">
-        <p class="footer--text">Desenvolvido por <a href="https://prebellisolucoes.com" class="footer--link">Prebelli Soluções</a></p>
-    </div>
+  <footer class="app-footer">
+    Desenvolvido por <a href="https://wa.me/5515981746903?text=vi%20seu%20sistema%20de%20karaoke" target="_blank" rel="noopener">Clayton Prebelli</a>
+  </footer>
 </div>

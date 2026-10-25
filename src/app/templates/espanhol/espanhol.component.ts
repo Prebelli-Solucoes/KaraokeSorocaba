@@ -1,10 +1,11 @@
 import { MatAccordion } from '@angular/material/expansion';
 import { MusicasService } from './../../core/services/musicas.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MusicasModel } from 'src/app/models/musicas-model';
+import { MusicasModel } from '../../models/musicas-model';
 
 @Component({
   selector: 'app-espanhol',
+  standalone: false,
   templateUrl: './espanhol.component.html',
   styleUrls: ['./espanhol.component.scss']
 })

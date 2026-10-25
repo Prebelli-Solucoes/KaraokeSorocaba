@@ -1,21 +1,54 @@
-<div class="total">
-<div class="box">
-    <img src="../../../assets/images/aurea.webp" alt="Sorocaba" class="box--foto">
-    <h1 class="box--title">Sorocaba Karaoke</h1>
-    <p class="box--text">Siga minhas redes sociais!</p>
-</div>
-<div class="box--corpo">
-    <a href="https://www.facebook.com/barrakaomusicbar.barbosa.3" target="_blank" class="facebook slideInLeft">
-            <i class="fa-brands fa-facebook"></i><h3 class="facebook--title">Sorocaba</h3>
-        </a> 
-        <a href="https://www.instagram.com/aureakaraoke/" class="insta slideInLeft2">
-            <i class="fa-brands fa-instagram"></i><h3 class="insta--title">@aureakaraoke</h3></a>
-            <a href="https://api.whatsapp.com/send?phone=5515997443388" class="whats slideInLeft3">
-            <i class="fa-brands fa-whatsapp"></i><h3 class="whats--title">Sorocaba</h3></a>
-            <a [routerLink]="['/lista']" class="lista slideInLeft4">
-            <i class="fa-solid fa-music"></i><h3 class="lista--title">Lista de Músicas</h3></a>
-</div>
-<div class="box--footer">
-    <p class="box--footer--text">Desenvolvido por <a href="https://api.whatsapp.com/send?phone=5515991789945" class="box--footer--link">Clayton Prebelli</a></p>
-</div>
+<div class="page">
+  <section class="hero">
+    <div class="hero__top">
+      <img src="assets/images/don.png" alt="Don Petisco" class="hero__logo">
+      <div>
+        <h1 class="hero__title">Karaoke Sorocaba</h1>
+      </div>
+    </div>
+    <p class="hero__subtitle">Siga as redes, fale com a equipe e consulte a lista completa de músicas.</p>
+  </section>
+
+  <main class="page-main">
+    <div class="section-title">
+      <h2>Redes e contato</h2>
+    </div>
+
+    <nav class="quick-links" aria-label="Redes sociais e contato">
+      <a class="quick-link quick-link--facebook" href="https://www.facebook.com/barrakaomusicbar.barbosa.3" target="_blank" rel="noopener">
+        <span class="quick-link__icon"><i class="fa-brands fa-facebook-f"></i></span>
+        <span class="quick-link__text">
+          <strong>Facebook</strong>
+          <small>Bar do Sorocaba</small>
+        </span>
+        <i class="fa-solid fa-arrow-up-right-from-square quick-link__arrow"></i>
+      </a>
+      <a class="quick-link quick-link--instagram" href="https://www.instagram.com/aureakaraoke/" target="_blank" rel="noopener">
+        <span class="quick-link__icon"><i class="fa-brands fa-instagram"></i></span>
+        <span class="quick-link__text">
+          <strong>Instagram</strong>
+          <small>@aureakaraoke</small>
+        </span>
+        <i class="fa-solid fa-arrow-up-right-from-square quick-link__arrow"></i>
+      </a>
+      <a class="quick-link quick-link--whatsapp" href="https://api.whatsapp.com/send?phone=5515997443388" target="_blank" rel="noopener">
+        <span class="quick-link__icon"><i class="fa-brands fa-whatsapp"></i></span>
+        <span class="quick-link__text">
+          <strong>WhatsApp</strong>
+          <small>Fale com a equipe</small>
+        </span>
+        <i class="fa-solid fa-arrow-up-right-from-square quick-link__arrow"></i>
+      </a>
+    </nav>
+
+    <a routerLink="/lista" class="home-cta">
+      <i class="fa-solid fa-music"></i>
+      Ver lista de músicas
+      <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </main>
+
+  <footer class="app-footer">
+    Desenvolvido por <a href="https://wa.me/5515981746903?text=vi%20seu%20sistema%20de%20karaoke" target="_blank" rel="noopener">Clayton Prebelli</a>
+  </footer>
 </div>

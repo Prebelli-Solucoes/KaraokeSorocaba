@@ -1,40 +1,36 @@
-import { MusicasModel } from './../../models/musicas-model';
-import { MusicasService } from './../../core/services/musicas.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista',
+  standalone: false,
   templateUrl: './lista.component.html',
   styleUrls: ['./lista.component.scss']
 })
 export class ListaComponent implements OnInit {
-dataStorage:Date = new Date();
-dataAtual:Date = new Date();
-termo:string='';
-desabilitado=true;
-  constructor(private musicasService: MusicasService,private route:Router) { }
+  dataStorage: Date = new Date();
+  dataAtual: Date = new Date();
+  termo = '';
+
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
-   if(localStorage.getItem('dataStorage')!=null){
-     this.dataStorage= new Date(JSON.parse(JSON.stringify(localStorage.getItem('dataStorage'))));
-     // se data storage for 15 dias antes da data atual, zerar todos os localStorage
-      if(this.dataStorage.getTime()<this.dataAtual.getTime()-15*24*60*60*1000){
+    if (localStorage.getItem('dataStorage') != null) {
+      this.dataStorage = new Date(JSON.parse(JSON.stringify(localStorage.getItem('dataStorage'))));
+      if (this.dataStorage.getTime() < this.dataAtual.getTime() - 15 * 24 * 60 * 60 * 1000) {
         localStorage.clear();
-        localStorage.setItem('dataStorage',JSON.stringify(this.dataAtual));
+        localStorage.setItem('dataStorage', JSON.stringify(this.dataAtual));
       }
-   }else{
-      localStorage.setItem('dataStorage',JSON.stringify(this.dataAtual));
-   }
-}
-validaBotao(){
-  if(this.termo.length>3){
-    this.desabilitado=false;
-  }else{
-    this.desabilitado=true;
+    } else {
+      localStorage.setItem('dataStorage', JSON.stringify(this.dataAtual));
+    }
   }
-}
-  buscar(){
-    this.route.navigate(['/busca/'+this.termo]);
+
+  buscar(): void {
+    const termo = this.termo.trim();
+    if (termo.length < 4) {
+      return;
+    }
+    this.route.navigate(['/busca', termo]);
   }
 }
