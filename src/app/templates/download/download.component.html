@@ -1,0 +1,147 @@
+<div class="page download-page">
+  <header class="page-header">
+    <a class="page-header__icon" routerLink="/lista" aria-label="Voltar para categorias"><i class="fa-solid fa-arrow-left"></i></a>
+    <div class="page-header__titles">
+      <img src="assets/images/don.png" alt="Don Petisco" class="page-header__logo">
+      <div class="page-header__text">
+        <span class="page-header__eyebrow">Karaoke Sorocaba</span>
+        <h1 class="page-header__title">Baixar aplicativo</h1>
+      </div>
+    </div>
+    <a class="page-header__icon" routerLink="/" aria-label="Início"><i class="fa-solid fa-house"></i></a>
+  </header>
+
+  <section class="hero download-hero" aria-labelledby="download-title">
+    <div class="download-hero__brand">
+      <img src="assets/images/don.png" alt="Don Petisco" class="hero__logo">
+      <div class="download-hero__heading">
+        <span class="download-hero__eyebrow">Aplicativo Android</span>
+        <h2 id="download-title" class="download-hero__title">Karaoke Sorocaba no seu celular</h2>
+      </div>
+    </div>
+
+    <p class="download-hero__subtitle">
+      Leve o repertório do karaokê com você. Consulte as músicas por categoria,
+      busque por cantor e mantenha as listas salvas no aparelho.
+    </p>
+
+    <div class="download-hero__actions">
+      <a class="download-button" [class.is-loading]="carregando" [href]="destinoDownload" (click)="fecharPopup()">
+        <i class="fa-brands fa-android" aria-hidden="true"></i>
+        <span>{{ rotuloDownload }}</span>
+      </a>
+      <a class="download-secondary" routerLink="/lista">Continuar no site</a>
+    </div>
+
+    <div class="download-meta" aria-live="polite">
+      @if (carregando) {
+        <span>Consultando o GitHub Releases...</span>
+      } @else if (release?.version) {
+        <span>Versão {{ release?.version }}</span>
+        @if (tamanhoFormatado) {
+          <span aria-hidden="true">•</span>
+          <span>{{ tamanhoFormatado }}</span>
+        }
+        @if (atualizadoEm) {
+          <span aria-hidden="true">•</span>
+          <span>Atualizado em {{ atualizadoEm }}</span>
+        }
+        <span aria-hidden="true">•</span>
+        <span>Android 8+</span>
+      } @else {
+        <span>Download disponível no GitHub Releases</span>
+        <span aria-hidden="true">•</span>
+        <span>Android 8+</span>
+      }
+    </div>
+  </section>
+
+  <main class="page-main download-main">
+    <section class="download-card" aria-labelledby="download-app-title">
+      <div class="download-card__head">
+        <span class="download-card__icon"><i class="fa-brands fa-android" aria-hidden="true"></i></span>
+        <div>
+          <h2 id="download-app-title">O repertório do karaokê no bolso</h2>
+          <p>O mesmo catálogo do site, com navegação rápida e listas salvas no aparelho.</p>
+        </div>
+      </div>
+      <ul class="download-features">
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Músicas por categoria e busca por cantor</span></li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Cache offline de 15 dias</span></li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Verificação de atualização ao abrir o app</span></li>
+      </ul>
+    </section>
+
+    <section class="download-steps" aria-labelledby="download-steps-title">
+      <h2 id="download-steps-title">Como instalar</h2>
+      <ol>
+        <li>
+          <span class="download-steps__number">1</span>
+          <div>
+            <strong>Baixe o APK</strong>
+            <p>Toque em “Baixar APK” e aguarde o download terminar.</p>
+          </div>
+        </li>
+        <li>
+          <span class="download-steps__number">2</span>
+          <div>
+            <strong>Abra o arquivo</strong>
+            <p>Toque no aviso de download ou procure o arquivo na pasta Downloads.</p>
+          </div>
+        </li>
+        <li>
+          <span class="download-steps__number">3</span>
+          <div>
+            <strong>Permita a instalação</strong>
+            <p>Se o Android pedir, autorize “instalar apps desconhecidos” para o navegador.</p>
+          </div>
+        </li>
+        <li>
+          <span class="download-steps__number">4</span>
+          <div>
+            <strong>Confirme e abra</strong>
+            <p>Toque em “Instalar” e depois em “Abrir”. O app já está pronto para usar.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="download-note">
+      <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+      <div>
+        <strong>Instalação fora da Play Store</strong>
+        <p>
+          O aplicativo é distribuído pelo GitHub Releases. O Android sempre pede
+          uma confirmação antes de instalar ou atualizar um APK; isso é uma
+          proteção do sistema e não um erro.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <a routerLink="/lista">Voltar ao site</a> · Desenvolvido por
+    <a href="https://wa.me/5515981746903?text=vi%20seu%20sistema%20de%20karaoke" target="_blank" rel="noopener">Clayton Prebelli</a>
+  </footer>
+
+  @if (mostrarPopup) {
+    <div class="download-modal" role="dialog" aria-modal="true" aria-labelledby="download-modal-title" (click)="fecharPopup()">
+      <div class="download-modal__card" (click)="$event.stopPropagation()">
+        <button type="button" class="download-modal__close" (click)="fecharPopup()" aria-label="Fechar">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+        <span class="download-modal__icon"><i class="fa-brands fa-android" aria-hidden="true"></i></span>
+        <h2 id="download-modal-title">Baixar o aplicativo?</h2>
+        <p>Leve o catálogo do Karaoke Sorocaba para o seu celular Android.</p>
+        <button type="button" class="download-button download-button--wide" (click)="baixar()">
+          <i class="fa-solid fa-download" aria-hidden="true"></i>
+          <span>{{ rotuloDownload }}</span>
+        </button>
+        <button type="button" class="download-modal__later" (click)="fecharPopup()">Agora não</button>
+        @if (release?.version) {
+          <span class="download-modal__version">Versão {{ release?.version }} • Android 8+</span>
+        }
+      </div>
+    </div>
+  }
+</div>

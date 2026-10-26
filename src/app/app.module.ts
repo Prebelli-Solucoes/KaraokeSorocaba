@@ -16,6 +16,7 @@ import { EspanholComponent } from './templates/espanhol/espanhol.component';
 import { GospelComponent } from './templates/gospel/gospel.component';
 import { InfantilComponent } from './templates/infantil/infantil.component';
 import { BuscaComponent } from './templates/busca/busca.component';
+import { DownloadComponent } from './templates/download/download.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -29,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     EspanholComponent,
     GospelComponent,
     InfantilComponent,
-    BuscaComponent
+    BuscaComponent,
+    DownloadComponent
   ],
   imports: [
     BrowserModule,

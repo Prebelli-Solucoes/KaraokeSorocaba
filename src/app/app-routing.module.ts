@@ -9,6 +9,7 @@ import { HomeComponent } from './templates/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BuscaComponent } from './templates/busca/busca.component';
+import { DownloadComponent } from './templates/download/download.component';
 
 const routes: Routes = [{
   path: '',
@@ -45,6 +46,11 @@ component:InfantilComponent
 {
   path: 'busca/:termo',
   component:BuscaComponent
+},
+{
+  path: 'download',
+  component: DownloadComponent,
+  title: 'Baixar o aplicativo | Karaoke Sorocaba'
 }
 ];
 
