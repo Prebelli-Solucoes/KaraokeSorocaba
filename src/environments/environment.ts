@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://apikaraoke.prebellisolucoes.com/Musicas/" 
+  apiUrl: "https://apikaraoke.claytonprebelli.com.br/Musicas/" 
 };
 
 /*
