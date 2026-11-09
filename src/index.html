@@ -11,6 +11,9 @@
   <meta name="description" content="Buscador de músicas das noites de karaokê de Sorocaba e região.">
   <meta name="keywords" content="karaoke, sorocaba, músicas, karaokê">
   <meta name="robots" content="index,follow">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <link rel="canonical" href="https://karaokesorocaba.com.br">
 
   <meta property="og:title" content="Karaoke Sorocaba" />
@@ -38,5 +41,48 @@
 </head>
 <body>
   <app-root></app-root>
+  <script>
+    (function () {
+      function scriptsDaPagina(raiz) {
+        return Array.prototype.map
+          .call(raiz.querySelectorAll('script[type="module"][src]'), function (tag) {
+            return tag.getAttribute('src');
+          })
+          .sort()
+          .join('|');
+      }
+
+      var carregados = scriptsDaPagina(document);
+
+      function verificarNovaVersao() {
+        if (document.visibilityState === 'hidden') return;
+        fetch(window.location.origin + '/index.html?verificacao=' + Date.now(), {
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+        })
+          .then(function (resposta) {
+            if (!resposta.ok) return null;
+            return resposta.text();
+          })
+          .then(function (html) {
+            if (!html) return;
+            var doc = new DOMParser().parseFromString(html, 'text/html');
+            var publicados = scriptsDaPagina(doc);
+            if (publicados && carregados && publicados !== carregados) {
+              window.location.reload();
+            }
+          })
+          .catch(function () {});
+      }
+
+      window.addEventListener('load', function () {
+        setTimeout(verificarNovaVersao, 30000);
+        setInterval(verificarNovaVersao, 5 * 60 * 1000);
+        document.addEventListener('visibilitychange', function () {
+          if (!document.hidden) verificarNovaVersao();
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
